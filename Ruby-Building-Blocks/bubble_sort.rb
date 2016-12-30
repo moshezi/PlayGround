@@ -17,7 +17,7 @@ def bubble_sort_by array
     swapped = false
     (array.length-1).times do |i|
       x = yield(array[i], array[ i + 1 ])
-        if x == 1
+        if x == 1                           #if x == 1 (positive) than the left side is larger than the right side
           array[i], array[ i +1 ] = array[ i +1 ], array[i]
           swapped = true
         end
