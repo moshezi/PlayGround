@@ -12,6 +12,7 @@ def bubble_sort array
   return array
 end
 
+
 def bubble_sort_by array
   loop do
     swapped = false
