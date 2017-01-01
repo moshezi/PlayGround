@@ -106,80 +106,23 @@ module Enumerable
 
 
 
-  def my_inject(initial=nil, sym=nil)
-
-  case initial
-
-  when Numeric
-    memo = initial
-
-    case sym
-
-    when Symbol
-      for element in self
-        case sym
-        when :*
-          memo = memo * element
-        when :+
-          memo = memo + element
-        when :-
-          memo = memo - element
-        when :/
-          memo = memo/element
-        when :%
-          memo = memo % element
-        else
-          return
-        end
-      end
-
-    else
-      for element in self
-        memo = yield(memo, element)
-      end
-    end
-
-  when Symbol
-    skip = true
-    for element in self
-      if skip
-        memo = element
-        skip = false
-      else
-        case initial
-        when :*
-          memo = memo * element
-        when :+
-          memo = memo + element
-        when :-
-          memo = memo - element
-        when :/
-          memo = memo/element
-        when :%
-          memo = memo % element
-        else
-          return
-        end
-      end
-    end
-
+  def my_inject(memo = nil)
+  if memo.nil?
+    memo = self[0]
+    i = 1
   else
-    skip = true
-    for element in self
-      if skip
-        memo = element
-        skip = false
-
-      else
-        memo = yield(memo, element)
-      end
-    end
+    i = 0
   end
-  memo
-end
+
+  while i < self.size
+    memo = yield(memo,self[i])
+    i += 1
+  end
+  return memo
 end
 
-def multiply_els arr
-arr.inject(:*)
-end
+def multiply_els(array)
+    array.my_inject { |memo, element| memo * element }
+  end
+
 end
