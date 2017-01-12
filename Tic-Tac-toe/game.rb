@@ -16,25 +16,6 @@ class Game
     @board = Board.new
   end
 
-  def switch_players
-    if @current_player == @player_1
-          @current_player = @player_2
-    else
-      @current_player = @player_1
-    end
-  end
-
-  def move
-		puts "#{@current_player.name}, where do you want to make your move? (Enter a number from 1-9): "
-		position = gets.chomp
-		if position.to_i == @board.grid[position.to_i - 1]
-			@board.grid[position.to_i - 1] = @current_player.marker
-		else
-			puts "This is not a valid move, please try again!: "
-			switch_players
-		end
-	end
-
   def begin
 		loop do
 			@board.display
@@ -53,9 +34,34 @@ class Game
 		end
 	end
 
-	def game_over?
-		@board.win? ||
-		@board.grid.all? {|cell| cell.is_a? String}
+
+  def switch_players
+    if @current_player == @player_1
+          @current_player = @player_2
+    else
+      @current_player = @player_1
+    end
+  end
+
+
+  def move
+		puts "#{@current_player.name}, where do you want to make your move? (Enter a number from 1-9): "
+		position = gets.chomp
+		if position.to_i == @board.grid[position.to_i - 1]
+			@board.grid[position.to_i - 1] = @current_player.marker
+		else
+			puts "This is not a valid move, please try again!: "
+			switch_players
+		end
 	end
 
+
+	def game_over?
+		@board.win? ||
+		@board.grid.all? {|cell| cell.is_a? String} #checks if all the cells are strings (meaning all the cells are X or O)
+  end                                          #if it ruterns true it's means we draw all cells in X or O and it's a draw
 end
+                                                #Passes each element of the collection to the given block.
+                                                #The method returns true if the block never returns false or nil.
+                                                #If the block is not given, Ruby adds an implicit block of {|obj| obj}
+                                                #(that is all? will return true only if none of the collection members are false or nil.)
