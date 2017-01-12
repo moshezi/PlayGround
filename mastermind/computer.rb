@@ -5,7 +5,7 @@ class Computer
   def initialize
     @guess = ''
     @password = ''
-    @sample = [1,2,3,4,5,6,7,8,9]
+    @sample = [1,2,3,4,5,6]
     @feedback = Array.new(4)
   end
 

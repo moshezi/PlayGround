@@ -1,5 +1,5 @@
 class Human
-  attr_accessor :password, :guess, :feedback
+  attr_accessor :password, :feedback, :guess
 
   def initialize
     @guess = ''
