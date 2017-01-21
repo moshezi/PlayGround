@@ -7,6 +7,19 @@ class Game
     @number_of_turns = 0
   end
 
+
+  def begin
+    setup_players
+    @maker.generate_password
+    until @number_of_turns == 12 || @breaker.guess == @maker.password
+      @breaker.try_to_guess(@maker.feedback)
+        @maker.give_feedback(@breaker.guess)
+        @number_of_dturns += 1
+      end
+      finish_game
+    end
+
+
   def setup_players
     puts "Please choose(M) if you want to make or choose (B) if you want to break"
     answer = gets.chomp
@@ -22,16 +35,6 @@ class Game
     end
   end
 
-  def begin
-    setup_players
-    @maker.generate_password
-    until @number_of_turns == 12 || @breaker.guess == @maker.password
-      @breaker.try_to_guess(@maker.feedback)
-        @maker.give_feedback(@breaker.guess)
-        @number_of_turns += 1
-      end
-      finish_game
-    end
 
     def finish_game
         if @breaker.guess == @maker.password
