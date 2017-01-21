@@ -14,7 +14,7 @@ class Game
     until @number_of_turns == 12 || @breaker.guess == @maker.password
       @breaker.try_to_guess(@maker.feedback)
         @maker.give_feedback(@breaker.guess)
-        @number_of_dturns += 1
+        @number_of_turns += 1
       end
       finish_game
     end
