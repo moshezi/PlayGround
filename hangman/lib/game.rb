@@ -1,3 +1,4 @@
+
 class Game
 
   def initialize
@@ -89,7 +90,7 @@ end
   # Give the user feedback on the result of the game.
   def finish_game
     if @progress == @word
-      puts "You did it, the word was #{word.join.upcase}! You win!!!"
+      puts "You did it, the word was #{@word.join.upcase}! You win!!!"
     else
       puts "You lose, the correct word was #{@word.join.upcase}!"
     end
@@ -111,7 +112,7 @@ end
   end
 
   def game_over?
-    @misses.size > 5 || @progress == @word
+    @misses.size > 12 || @progress == @word
   end
 
 # Display info about already guessed letters and number of wrong guesses left.
@@ -119,7 +120,7 @@ def display_progress
   puts @progress.join.upcase
   puts ""
   puts "Misses: #{@misses.join}"
-  puts "You have #{6 - @misses.size} missed guesses left."
+  puts "You have #{13 - @misses.size} missed guesses left."
 end
 
    # Prompt the user to enter a letter to guess, save or exit the game)
